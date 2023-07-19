@@ -551,7 +551,9 @@ func HandlePduSessionDataReportResponse(msg *pfcpUdp.Message) {
 }
 
 func HandlePDUSessionReleaseFromSMFRequest(msg *pfcpUdp.Message) {
-	req := msg.PfcpMessage.Body.(pfcp.PDUSessionReleaseFromSMFRequest)
+	// req is not being used
+	// req := msg.PfcpMessage.Body.(pfcp.PDUSessionReleaseFromSMFRequest)
+	_ = msg.PfcpMessage.Body.(pfcp.PDUSessionReleaseFromSMFRequest)
 
 	SEID := msg.PfcpMessage.Header.SEID
 	smContext := smf_context.GetSMContextBySEID(SEID)

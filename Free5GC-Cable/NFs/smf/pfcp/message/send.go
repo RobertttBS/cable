@@ -423,7 +423,11 @@ func SendPduSessionDataReportRequest(upNodeID pfcpType.NodeID) {
 }
 
 func SendPDUSessionReleaseFromSMFRequest(smfNodeID pfcpType.NodeID, SEID uint64) {
-	pfcpMsg, err := BuildPDUSessionReleaseFromSMFRequest()
+	// this function is not being called
+	pduSessionID := pfcpType.PDUSessionID{
+		PduSessionid: smfNodeID.NodeIdValue,
+	}
+	pfcpMsg, err := BuildPDUSessionReleaseFromSMFRequest(pduSessionID) // PDUSessionID is []byte, use smfNodeID.NodeIdValue to replace
 	if err != nil {
 		logger.PfcpLog.Errorf("Build PDU Session Release From SMF Request failed: %v", err)
 		return
@@ -450,7 +454,7 @@ func SendPDUSessionReleaseFromSMFRequest(smfNodeID pfcpType.NodeID, SEID uint64)
 }
 
 func SendPDUSessionReleaseFromSMFResponse(smfNodeID pfcpType.NodeID, cause pfcpType.Cause, seq uint32, SEID uint64) {
-	pfcpMsg, err := BuildPDUSessionReleaseFromSMFResponse()
+	pfcpMsg, err := BuildPDUSessionReleaseFromSMFResponse(cause)
 	if err != nil {
 		logger.PfcpLog.Errorf("Build PDU Session Release From SMF Response failed: %v", err)
 		return

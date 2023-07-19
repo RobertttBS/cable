@@ -503,7 +503,7 @@ func BuildPfcpUpfReportResponse(cause pfcpType.Cause) (pfcp.PFCPUPFReportRespons
 func BuildPDUSessionReleaseFromSMFRequest(pdusessionid pfcpType.PDUSessionID) (pfcp.PDUSessionReleaseFromSMFRequest, error) {
 	msg := pfcp.PDUSessionReleaseFromSMFRequest{}
 
-	msg.PDUSessionID = pdusessionid
+	msg.PDUSessionID = &pdusessionid
 
 	return msg, nil
 }
