@@ -1,10 +1,78 @@
 import React, { Component } from 'react';
+import { subModalSchema, subModaluiSchema } from '../../../metadata/index'
 import { Modal } from "react-bootstrap";
 import Form from "react-jsonschema-form";
 import PropTypes from 'prop-types';
 import _ from 'lodash';
 
 let snssaiToString = (snssai) => snssai.sst.toString(16).padStart(2, '0').toUpperCase() + snssai.sd
+
+function validate(formData, errors) {
+  let item = formData["sliceConfigurations"]
+  item.map(i => {
+    i.dnnConfigurations.map(d => {
+      var qfiList = new Set([]);
+      if (d.qosFlows) {
+        d.qosFlows.map(q => {
+          if (qfiList.has(q["5qi"])) {
+            errors.sliceConfigurations.addError(`The QoS Flow (qfi = ${q["5qi"]}) is already exist.`);
+          } else {
+            qfiList.add(q["5qi"]);
+          }
+          if (q["5qi"] >= 5 && (q.gbrUL || q.gbrDL)) {
+            errors.sliceConfigurations.addError(`${q["5qi"]} is non-GBR 5QI.\nthus, gbr related parameters won’t be applied.`);
+          }
+          return 0;
+        })
+      }
+      return 0;
+    })
+    return 0;
+  })
+  return errors;
+}
+
+
+
+function dnnConfigurationFromSliceConfiguration(dnnConfig) {
+  let obj = {
+    "sscModes": {
+      "defaultSscMode": "SSC_MODE_1",
+      "allowedSscModes": ["SSC_MODE_2", "SSC_MODE_3"]
+    },
+    "pduSessionTypes": {
+      "defaultSessionType": "IPV4",
+      "allowedSessionTypes": ["IPV4"]
+    },
+    "sessionAmbr": {
+      "uplink": dnnConfig.uplinkAmbr,
+      "downlink": dnnConfig.downlinkAmbr
+    },
+    "5gQosProfile": {
+      "5qi": dnnConfig["5qi"],
+      "arp": {
+        "priorityLevel": 8
+      },
+      "priorityLevel": 8
+    }
+  }
+
+  if (dnnConfig.upSecurityChk === true) {
+    obj["upSecurity"] = {
+      "upIntegr": dnnConfig.upIntegrity,
+      "upConfid": dnnConfig.upConfidentiality
+    }
+  }
+
+  if (dnnConfig.staticIP !== undefined && dnnConfig.staticIP.length !== 0) {
+    obj["staticIpAddress"] = [
+      {
+        "ipv4Addr": dnnConfig.staticIP
+      }
+    ]
+  }
+  return obj
+}
 
 function smDatasFromSliceConfiguration(sliceConfiguration) {
   return _.map(sliceConfiguration, slice => {
@@ -17,44 +85,142 @@ function smDatasFromSliceConfiguration(sliceConfiguration) {
         // key
         dnnConfig.dnn,
         // value
-        {
-          "sscModes": {
-            "defaultSscMode": "SSC_MODE_1",
-            "allowedSscModes": ["SSC_MODE_2", "SSC_MODE_3"]
-          },
-          "pduSessionTypes": {
-            "defaultSessionType": "IPV4",
-            "allowedSessionTypes": ["IPV4"]
-          },
-          "sessionAmbr": {
-            "uplink": dnnConfig.uplinkAmbr,
-            "downlink": dnnConfig.downlinkAmbr
-          },
-          "5gQosProfile": {
-            "5qi": dnnConfig["5qi"],
-            "arp": {
-              "priorityLevel": 8
-            },
-            "priorityLevel": 8
-          }
-        }
+        dnnConfigurationFromSliceConfiguration(dnnConfig)
       ]))
     }
   })
 }
 
-function flowRulesFromSliceConfiguration(sliceConfigurations) {
-  var flowRules = []
-  sliceConfigurations.forEach(slice => {
-    slice.dnnConfigurations.forEach(dnn => {
-      if (dnn.flowRules !== undefined) {
-        dnn.flowRules.forEach(flowRule => {
-          flowRules.push(Object.assign({ snssai: snssaiToString(slice.snssai), dnn: dnn.dnn }, flowRule))
+function qosFlowsFromSliceConfiguration(sliceConfigurations) {
+  var qosFlows = [];
+  sliceConfigurations.forEach(sliceConfiguration => {
+    sliceConfiguration.dnnConfigurations.forEach(dnnConfiguration => {
+      if (dnnConfiguration.flowRules !== undefined) {
+        dnnConfiguration.flowRules.forEach(flowRule => {
+          qosFlows.push(
+            Object.assign(
+              { 
+                snssai: snssaiToString(sliceConfiguration.snssai), 
+                dnn: dnnConfiguration.dnn,
+                qfi: flowRule["5qi"] 
+              },
+              flowRule
+            )
+          )
         })
       }
     })
   })
+
+  return qosFlows
+}
+
+function flowRulesFromSliceConfiguration(sliceConfigurations) {
+  var flowRules = []
+  sliceConfigurations.forEach(sliceConfiguration => {
+    sliceConfiguration.dnnConfigurations.forEach(dnnConfiguration => {
+      if (dnnConfiguration.flowRules !== undefined){
+        dnnConfiguration.flowRules.forEach(flowRule => {
+          flowRules.push(
+            Object.assign(
+              {
+                filter: flowRule.filter,
+                precedence: flowRule.precedence,
+                snssai: snssaiToString(sliceConfiguration.snssai),
+                dnn: dnnConfiguration.dnn,
+                qfi: flowRule["5qi"],
+              }
+            )
+          )
+        })
+      }
+    })
+  })
+
   return flowRules
+}
+
+function sliceConfigurationsFromSubscriber(subscriber) {
+  const defaultSingleNssais = subscriber["AccessAndMobilitySubscriptionData"]["nssai"]["defaultSingleNssais"] ? subscriber["AccessAndMobilitySubscriptionData"]["nssai"]["defaultSingleNssais"].map(nssai => {
+    return {
+      snssai: {
+        sst: nssai.sst,
+        sd: nssai.sd,
+        isDefault: true
+      }
+    }
+  }) : [];
+  const singleNssais = subscriber["AccessAndMobilitySubscriptionData"]["nssai"]["singleNssais"] ? subscriber["AccessAndMobilitySubscriptionData"]["nssai"]["singleNssais"].map(nssai => {
+    return {
+      snssai: {
+        sst: nssai.sst,
+        sd: nssai.sd,
+        isDefault: false
+      }
+    }
+  }) : [];
+
+  let sliceConfigurations = [ // merge
+    ...defaultSingleNssais,
+    ...singleNssais
+  ];
+
+  const sessionManagementSubscriptionData = subscriber["SessionManagementSubscriptionData"];
+
+  sliceConfigurations.forEach(sliceConf => {
+    const dnnConfigs = sessionManagementSubscriptionData.find(data => data.singleNssai.sst === sliceConf.snssai.sst && data.singleNssai.sd === sliceConf.snssai.sd).dnnConfigurations;
+    sliceConf.dnnConfigurations = Object.keys(dnnConfigs).map(dnn => {
+
+      let flowRules = []; 
+      const qosFlowsData = subscriber["QosFlows"];
+      if (qosFlowsData && qosFlowsData.length !== 0) {
+        flowRules = qosFlowsData
+          .filter(rule => rule.snssai === snssaiToString(sliceConf.snssai) && dnn === rule.dnn)
+          .map(rule => {
+            return {
+              "5qi": rule["5qi"],
+              gbrUL: rule.gbrUL,
+              gbrDL: rule.gbrDL,
+              mbrUL: rule.mbrUL,
+              mbrDL: rule.mbrDL,
+              precedence: rule.flowRules[0].precedence,
+              filter: rule.flowRules[0].filter
+            }
+          })
+      }
+
+      let staticIps = "";
+      const staticIpAddress = dnnConfigs[dnn].staticIpAddress
+      if (staticIpAddress && staticIpAddress.length !== 0) {
+        staticIps += staticIpAddress.reduce((total, element) => {
+          return total + element["ipv4Addr"]
+        }, "")
+      }
+      if (dnnConfigs[dnn].upSecurity) {
+        return {
+          dnn: dnn,
+          staticIP: staticIps,
+          uplinkAmbr: dnnConfigs[dnn].sessionAmbr.uplink,
+          downlinkAmbr: dnnConfigs[dnn].sessionAmbr.downlink,
+          "5qi": dnnConfigs[dnn]["5gQosProfile"]["5qi"],
+          flowRules: flowRules, // new
+          upSecurityChk: true,
+          upIntegrity: dnnConfigs[dnn].upSecurity.upIntegr,
+          upConfidentiality: dnnConfigs[dnn].upSecurity.upConfid
+        };
+      }
+      return {
+        dnn: dnn,
+        staticIP: staticIps,
+        uplinkAmbr: dnnConfigs[dnn].sessionAmbr.uplink,
+        downlinkAmbr: dnnConfigs[dnn].sessionAmbr.downlink,
+        "5qi": dnnConfigs[dnn]["5gQosProfile"]["5qi"],
+        flowRules: flowRules // new
+      };
+    });
+  });
+  
+  return sliceConfigurations;
 }
 
 class SubscriberModal extends Component {
@@ -73,247 +239,8 @@ class SubscriberModal extends Component {
     rerenderCounter: 0,
   };
 
-  state = {
-    formData: undefined,
-    editMode: false,
-    // for force re-rendering json form
-    rerenderCounter: 0,
-  };
-
-  schema = {
-    // title: "A registration form",
-    // "description": "A simple form example.",
-    type: "object",
-    required: [
-      "plmnID",
-      "ueId",
-      "authenticationMethod",
-      "K",
-      "OPOPcSelect",
-      "OPOPc",
-    ],
-    properties: {
-      plmnID: {
-        type: "string",
-        title: "PLMN ID",
-        pattern: "^[0-9]{5,6}$",
-        default: "20893",
-      },
-      ueId: {
-        type: "string",
-        title: "SUPI (IMSI)",
-        pattern: "^[0-9]{10,15}$",
-        default: "208930000000003",
-      },
-      authenticationMethod: {
-        type: "string",
-        title: "Authentication Method",
-        default: "5G_AKA",
-        enum: ["5G_AKA", "EAP_AKA_PRIME"],
-      },
-      K: {
-        type: "string",
-        title: "K",
-        pattern: "^[A-Fa-f0-9]{32}$",
-        default: "8baf473f2f8fd09487cccbd7097c6862",
-      },
-      OPOPcSelect: {
-        type: "string",
-        title: "Operator Code Type",
-        enum: ["OP", "OPc"],
-        default: "OPc",
-      },
-      OPOPc: {
-        type: "string",
-        title: "Operator Code Value",
-        pattern: "^[A-Fa-f0-9]{32}$",
-        default: "8e27b6af0e692e750f32667a3b14605d",
-      },
-      sliceConfigurations: {
-        type: "array",
-        title: "S-NSSAI Configuration",
-        items: { $ref: "#/definitions/SliceConfiguration" },
-        default: [
-          {
-            snssai: {
-              "sst": 1,
-              "sd": "010203",
-              "isDefault": true,
-            },
-            dnnConfigurations: [
-              {
-                dnn: "internet",
-                uplinkAmbr: "200 Mbps",
-                downlinkAmbr: "100 Mbps",
-                "5qi": 9,
-              },
-              {
-                dnn: "internet2",
-                uplinkAmbr: "200 Mbps",
-                downlinkAmbr: "100 Mbps",
-                "5qi": 9,
-              }
-            ]
-          },
-          {
-            snssai: {
-              "sst": 1,
-              "sd": "112233",
-              "isDefault": true,
-            },
-            dnnConfigurations: [
-              {
-                dnn: "internet",
-                uplinkAmbr: "200 Mbps",
-                downlinkAmbr: "100 Mbps",
-                "5qi": 9,
-              },
-              {
-                dnn: "internet2",
-                uplinkAmbr: "200 Mbps",
-                downlinkAmbr: "100 Mbps",
-                "5qi": 9,
-              }
-            ]
-          },
-        ],
-      },
-    },
-    definitions: {
-      Snssai: {
-        type: "object",
-        required: ["sst", "sd"],
-        properties: {
-          sst: {
-            type: "integer",
-            title: "SST",
-            minimum: 0,
-            maximum: 255,
-          },
-          sd: {
-            type: "string",
-            title: "SD",
-            pattern: "^[A-Fa-f0-9]{6}$",
-          },
-          isDefault: {
-            type: "boolean",
-            title: "Default S-NSSAI",
-            default: false,
-          },
-        },
-      },
-      SliceConfiguration: {
-        type: "object",
-        properties: {
-          snssai: {
-            $ref: "#/definitions/Snssai"
-          },
-          dnnConfigurations: {
-            type: "array",
-            title: "DNN Configurations",
-            items: { $ref: "#/definitions/DnnConfiguration" },
-          }
-        }
-      },
-      DnnConfiguration: {
-        type: "object",
-        required: ["dnn", "uplinkAmbr", "downlinkAmbr"],
-        properties: {
-          dnn: {
-            type: "string",
-            title: "Data Network Name"
-          },
-          uplinkAmbr: {
-            $ref: "#/definitions/bitRate",
-            title: "Uplink AMBR",
-            default: "1000 Kbps"
-          },
-          downlinkAmbr: {
-            $ref: "#/definitions/bitRate",
-            title: "Downlink AMBR",
-            default: "1000 Kbps"
-          },
-          "5qi": {
-            type: "integer",
-            minimum: 0,
-            maximum: 255,
-            title: "Default 5QI"
-          },
-          flowRules: {
-            type: "array",
-            items: { $ref: "#/definitions/FlowInformation" },
-            maxItems: 1,
-            title: "Flow Rules"
-          }
-        },
-      },
-      FlowInformation: {
-        type: "object",
-        properties: {
-          filter: {
-            $ref: "#/definitions/IPFilter",
-            title: "IP Filter"
-          },
-          "5qi": {
-            type: "integer",
-            minimum: 0,
-            maximum: 255,
-            title: "5QI"
-          },
-          gbrUL: {
-            $ref: "#/definitions/bitRate",
-            title: "Uplink GBR",
-          },
-          gbrDL: {
-            $ref: "#/definitions/bitRate",
-            title: "Downlink GBR",
-          },
-          mbrUL: {
-            $ref: "#/definitions/bitRate",
-            title: "Uplink MBR",
-          },
-          mbrDL: {
-            $ref: "#/definitions/bitRate",
-            title: "Downlink MBR",
-          },
-        }
-      },
-      IPFilter: {
-        type: "string",
-      },
-      bitRate: {
-        type: "string",
-        pattern: "^[0-9]+(\\.[0-9]+)? (bps|Kbps|Mbps|Gbps|Tbps)$"
-      },
-    },
-  };
-
-  uiSchema = {
-    OPOPcSelect: {
-      "ui:widget": "select",
-    },
-    authenticationMethod: {
-      "ui:widget": "select",
-    },
-    SliceConfiurations: {
-      "ui:options": {
-        "orderable": false
-      },
-      "isDefault": {
-        "ui:widget": "radio",
-      },
-      "dnnConfigurations": {
-        "ui:options": {
-          "orderable": false
-        },
-        "flowRules": {
-          "ui:options": {
-            "orderable": false
-          },
-        }
-      }
-    }
-  };
+  schema = subModalSchema;
+  uiSchema = subModaluiSchema;
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps !== this.props) {
@@ -322,16 +249,21 @@ class SubscriberModal extends Component {
       if (this.props.subscriber) {
         const subscriber = this.props.subscriber;
         const isOp = subscriber['AuthenticationSubscription']["milenage"]["op"]["opValue"] !== "";
-
+        //get the index of msisdn in gpsis
+        let msisdnId = subscriber['AccessAndMobilitySubscriptionData']["gpsis"].findIndex(gpsi => gpsi.includes("msisdn-"));
         let formData = {
           plmnID: subscriber['plmnID'],
           ueId: subscriber['ueId'].replace("imsi-", ""),
+          msisdn: msisdnId === -1 ? null : subscriber['AccessAndMobilitySubscriptionData']["gpsis"][msisdnId].replace("msisdn-", ""),
           authenticationMethod: subscriber['AuthenticationSubscription']["authenticationMethod"],
           K: subscriber['AuthenticationSubscription']["permanentKey"]["permanentKeyValue"],
           OPOPcSelect: isOp ? "OP" : "OPc",
           OPOPc: isOp ? subscriber['AuthenticationSubscription']["milenage"]["op"]["opValue"] :
             subscriber['AuthenticationSubscription']["opc"]["opcValue"],
+          SQN: subscriber['AuthenticationSubscription']["sequenceNumber"],
+          sliceConfigurations: sliceConfigurationsFromSubscriber(subscriber),
         };
+
 
         this.updateFormData(formData).then();
       }
@@ -378,10 +310,11 @@ class SubscriberModal extends Component {
     const OPc = formData["OPOPcSelect"] === "OPc" ? formData["OPOPc"] : "";
 
     let subscriberData = {
+      "userNumber": formData["userNumber"],
       "plmnID": formData["plmnID"], // Change required
       "ueId": "imsi-" + formData["ueId"], // Change required
       "AuthenticationSubscription": {
-        "authenticationManagementField": "8000",
+        "authenticationManagementField": formData["AMF"],
         "authenticationMethod": formData["authenticationMethod"], // "5G_AKA", "EAP_AKA_PRIME"
         "milenage": {
           "op": {
@@ -400,11 +333,11 @@ class SubscriberModal extends Component {
           "encryptionKey": 0,
           "permanentKeyValue": formData["K"] // Change required
         },
-        "sequenceNumber": "16f3b3f70fc2",
+        "sequenceNumber": formData["SQN"],
       },
       "AccessAndMobilitySubscriptionData": {
         "gpsis": [
-          "msisdn-0900000000"
+          formData["msisdn"] === undefined ? null : "msisdn-" + formData["msisdn"]
         ],
         "nssai": {
           "defaultSingleNssais": _(formData["sliceConfigurations"])
@@ -421,14 +354,12 @@ class SubscriberModal extends Component {
       },
       "SessionManagementSubscriptionData": smDatasFromSliceConfiguration(formData["sliceConfigurations"]),
       "SmfSelectionSubscriptionData": {
-        "DnnInfosubscribedSnssaiInfos": _.fromPairs(
+        "subscribedSnssaiInfos": _.fromPairs(
           _.map(formData["sliceConfigurations"], slice => [snssaiToString(slice.snssai),
           {
-            "dnnInfos": [
-              {
-                "dnn": "internet",
-              },
-            ]
+            "dnnInfos": _.map(slice.dnnConfigurations, dnnConfig => {
+              return { "dnn": dnnConfig.dnn }
+            })
           }]))
       },
       "AmPolicyData": {
@@ -444,17 +375,24 @@ class SubscriberModal extends Component {
               "sst": slice.snssai.sst,
               "sd": slice.snssai.sd
             },
-            "smPolicyDnnData": {
-              "internet": {
-                "dnn": "internet"
-              },
-            },
+            "smPolicyDnnData": _.fromPairs(
+              _.map(slice.dnnConfigurations, dnnConfig => [
+                dnnConfig.dnn,
+                {
+                  "dnn": dnnConfig.dnn
+                }
+              ])
+            )
           }]))
       },
-      "FlowRules": flowRulesFromSliceConfiguration(formData["sliceConfigurations"])
+      "FlowRules": flowRulesFromSliceConfiguration(formData["sliceConfigurations"]),
+      "QosFlows": qosFlowsFromSliceConfiguration(formData["sliceConfigurations"]),
     };
-
-    this.props.onSubmit(subscriberData);
+    if (this.state.editMode) {
+      this.props.onModify(subscriberData);
+    } else {
+      this.props.onSubmit(subscriberData);
+    }
   }
 
   render() {
@@ -475,6 +413,7 @@ class SubscriberModal extends Component {
             <Form schema={this.schema}
               uiSchema={this.uiSchema}
               formData={this.state.formData}
+              validate={validate}
               onChange={this.onChange.bind(this)}
               onSubmit={this.onSubmitClick.bind(this)} />
           }

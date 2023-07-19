@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"github.com/free5gc/logger_util"
+	logger_util "github.com/free5gc/util/logger"
 	"github.com/free5gc/webconsole/backend/logger"
 )
 
@@ -61,6 +61,90 @@ var routes = Routes{
 	},
 
 	{
+		"Login",
+		http.MethodPost,
+		"/login",
+		Login,
+	},
+
+	{
+		"Logout",
+		http.MethodPost,
+		"/logout",
+		Logout,
+	},
+
+	{
+		"GetTenants",
+		http.MethodGet,
+		"/tenant",
+		GetTenants,
+	},
+
+	{
+		"GetTenantByID",
+		http.MethodGet,
+		"/tenant/:tenantId",
+		GetTenantByID,
+	},
+
+	{
+		"PostTenant",
+		http.MethodPost,
+		"/tenant",
+		PostTenant,
+	},
+
+	{
+		"PutTenantByID",
+		http.MethodPut,
+		"/tenant/:tenantId",
+		PutTenantByID,
+	},
+
+	{
+		"DeleteTenantByID",
+		http.MethodDelete,
+		"/tenant/:tenantId",
+		DeleteTenantByID,
+	},
+
+	{
+		"GetUsers",
+		http.MethodGet,
+		"/tenant/:tenantId/user",
+		GetUsers,
+	},
+
+	{
+		"GetUserByID",
+		http.MethodGet,
+		"/tenant/:tenantId/user/:userId",
+		GetUserByID,
+	},
+
+	{
+		"PostUserByID",
+		http.MethodPost,
+		"/tenant/:tenantId/user",
+		PostUserByID,
+	},
+
+	{
+		"PutUserByID",
+		http.MethodPut,
+		"/tenant/:tenantId/user/:userId",
+		PutUserByID,
+	},
+
+	{
+		"DeleteUserByID",
+		http.MethodDelete,
+		"/tenant/:tenantId/user/:userId",
+		DeleteUserByID,
+	},
+
+	{
 		"GetSubscribers",
 		http.MethodGet,
 		"/subscriber",
@@ -78,6 +162,13 @@ var routes = Routes{
 		"PostSubscriberByID",
 		http.MethodPost,
 		"/subscriber/:ueId/:servingPlmnId",
+		PostSubscriberByID,
+	},
+
+	{
+		"PostMultiSubscriber",
+		http.MethodPost,
+		"/subscriber/:ueId/:servingPlmnId/:userNumber",
 		PostSubscriberByID,
 	},
 
