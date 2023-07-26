@@ -33,4 +33,4 @@ require (
 	go.mongodb.org/mongo-driver v1.5.3
 	gopkg.in/yaml.v2 v2.4.0
 )
-replace github.com/free5gc/pfcp v1.0.0 => /home/free5gc/go/src/github.com/free5gc/pfcp@v1.0.0
+replace github.com/free5gc/pfcp v1.0.0 => ../../pfcp@v1.0.0

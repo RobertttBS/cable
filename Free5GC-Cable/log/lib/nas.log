@@ -1,0 +1,17 @@
+time="2023-07-24T17:43:06Z" level=info msg="set log level : info" category=NAS component=LIB
+time="2023-07-24T17:43:06Z" level=info msg="set report call : false" category=NAS component=LIB
+time="2023-07-24T17:43:06Z" level=info msg="set log level : info" category=NAS component=LIB
+time="2023-07-24T17:43:06Z" level=info msg="set report call : false" category=NAS component=LIB
+time="2023-07-24T17:43:33Z" level=info msg="ProtocolOrContainerList:  [0xc00062e980 0xc00062e9c0]" category=Convert component=NAS
+time="2023-07-25T07:45:27Z" level=info msg="set log level : info" category=NAS component=LIB
+time="2023-07-25T07:45:27Z" level=info msg="set report call : false" category=NAS component=LIB
+time="2023-07-25T07:45:27Z" level=info msg="set log level : info" category=NAS component=LIB
+time="2023-07-25T07:45:27Z" level=info msg="set report call : false" category=NAS component=LIB
+time="2023-07-25T07:46:00Z" level=info msg="ProtocolOrContainerList:  [0xc0003da980 0xc0003da9c0]" category=Convert component=NAS
+time="2023-07-25T07:47:00Z" level=info msg="ProtocolOrContainerList:  [0xc00038cb20 0xc00038cb60]" category=Convert component=NAS
+time="2023-07-26T07:48:48Z" level=info msg="set log level : info" category=NAS component=LIB
+time="2023-07-26T07:48:48Z" level=info msg="set report call : false" category=NAS component=LIB
+time="2023-07-26T07:48:48Z" level=info msg="set log level : info" category=NAS component=LIB
+time="2023-07-26T07:48:48Z" level=info msg="set report call : false" category=NAS component=LIB
+time="2023-07-26T07:50:00Z" level=info msg="ProtocolOrContainerList:  [0xc00000cf80 0xc00000d060]" category=Convert component=NAS
+time="2023-07-26T07:51:00Z" level=info msg="ProtocolOrContainerList:  [0xc000106460 0xc0001064c0]" category=Convert component=NAS

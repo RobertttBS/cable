@@ -1,0 +1,47 @@
+time="2023-07-24T17:43:06Z" level=info msg="PCF version:  \n\tNot specify ldflags (which link version) during go build\n\tgo version: go1.15.7 linux/amd64" category=App component=PCF
+time="2023-07-24T17:43:06Z" level=info msg="PCF Log level is set to [info] level" category=Init component=PCF
+time="2023-07-24T17:43:06Z" level=info msg="config version [1.0.0]" category=CFG component=PCF
+time="2023-07-24T17:43:06Z" level=info msg="Server started" category=Init component=PCF
+time="2023-07-24T17:43:06Z" level=info msg="pcfconfig Info: Version[1.0.0] Description[PCF initial local configuration]" category=Util component=PCF
+time="2023-07-24T17:43:32Z" level=info msg="Handle AM Policy Create Request" category=Ampolicy component=PCF
+time="2023-07-24T17:43:32Z" level=info msg="| 201 |       127.0.0.1 | POST    | /npcf-am-policy-control/v1/policies | " category=GIN component=PCF
+time="2023-07-24T17:43:33Z" level=info msg="Handle CreateSmPolicy" category=SMpolicy component=PCF
+time="2023-07-24T17:43:33Z" level=info msg="| 201 |       127.0.0.1 | POST    | /npcf-smpolicycontrol/v1/sm-policies | " category=GIN component=PCF
+time="2023-07-24T17:49:42Z" level=info msg="Terminating PCF..." category=Init component=PCF
+time="2023-07-24T17:49:42Z" level=info msg="Send Deregister NFInstance" category=Consumer component=PCF
+time="2023-07-24T17:49:43Z" level=info msg="Deregister from NRF successfully" category=Init component=PCF
+time="2023-07-24T17:49:43Z" level=info msg="PCF terminated" category=Init component=PCF
+time="2023-07-25T07:45:27Z" level=info msg="PCF version:  \n\tNot specify ldflags (which link version) during go build\n\tgo version: go1.15.7 linux/amd64" category=App component=PCF
+time="2023-07-25T07:45:27Z" level=info msg="PCF Log level is set to [info] level" category=Init component=PCF
+time="2023-07-25T07:45:27Z" level=info msg="config version [1.0.0]" category=CFG component=PCF
+time="2023-07-25T07:45:27Z" level=info msg="Server started" category=Init component=PCF
+time="2023-07-25T07:45:27Z" level=info msg="pcfconfig Info: Version[1.0.0] Description[PCF initial local configuration]" category=Util component=PCF
+time="2023-07-25T07:46:00Z" level=info msg="Handle AM Policy Create Request" category=Ampolicy component=PCF
+time="2023-07-25T07:46:00Z" level=info msg="| 201 |       127.0.0.1 | POST    | /npcf-am-policy-control/v1/policies | " category=GIN component=PCF
+time="2023-07-25T07:46:00Z" level=info msg="Handle CreateSmPolicy" category=SMpolicy component=PCF
+time="2023-07-25T07:46:00Z" level=info msg="| 201 |       127.0.0.1 | POST    | /npcf-smpolicycontrol/v1/sm-policies | " category=GIN component=PCF
+time="2023-07-25T07:47:00Z" level=info msg="Handle CreateSmPolicy" category=SMpolicy component=PCF
+time="2023-07-25T07:47:00Z" level=info msg="| 201 |       127.0.0.1 | POST    | /npcf-smpolicycontrol/v1/sm-policies | " category=GIN component=PCF
+time="2023-07-25T07:48:57Z" level=info msg="Handle AM Policy Create Request" category=Ampolicy component=PCF
+time="2023-07-25T07:48:57Z" level=info msg="| 201 |       127.0.0.1 | POST    | /npcf-am-policy-control/v1/policies | " category=GIN component=PCF
+time="2023-07-25T07:52:05Z" level=info msg="Terminating PCF..." category=Init component=PCF
+time="2023-07-25T07:52:05Z" level=info msg="Send Deregister NFInstance" category=Consumer component=PCF
+time="2023-07-25T07:52:06Z" level=info msg="Deregister from NRF successfully" category=Init component=PCF
+time="2023-07-25T07:52:06Z" level=info msg="PCF terminated" category=Init component=PCF
+time="2023-07-26T07:48:48Z" level=info msg="PCF version:  \n\tNot specify ldflags (which link version) during go build\n\tgo version: go1.15.7 linux/amd64" category=App component=PCF
+time="2023-07-26T07:48:48Z" level=info msg="PCF Log level is set to [info] level" category=Init component=PCF
+time="2023-07-26T07:48:48Z" level=info msg="config version [1.0.0]" category=CFG component=PCF
+time="2023-07-26T07:48:48Z" level=info msg="Server started" category=Init component=PCF
+time="2023-07-26T07:48:48Z" level=info msg="pcfconfig Info: Version[1.0.0] Description[PCF initial local configuration]" category=Util component=PCF
+time="2023-07-26T07:49:59Z" level=info msg="Handle AM Policy Create Request" category=Ampolicy component=PCF
+time="2023-07-26T07:49:59Z" level=info msg="| 201 |       127.0.0.1 | POST    | /npcf-am-policy-control/v1/policies | " category=GIN component=PCF
+time="2023-07-26T07:50:00Z" level=info msg="Handle CreateSmPolicy" category=SMpolicy component=PCF
+time="2023-07-26T07:50:00Z" level=info msg="| 201 |       127.0.0.1 | POST    | /npcf-smpolicycontrol/v1/sm-policies | " category=GIN component=PCF
+time="2023-07-26T07:51:00Z" level=info msg="Handle CreateSmPolicy" category=SMpolicy component=PCF
+time="2023-07-26T07:51:00Z" level=info msg="| 201 |       127.0.0.1 | POST    | /npcf-smpolicycontrol/v1/sm-policies | " category=GIN component=PCF
+time="2023-07-26T07:53:07Z" level=info msg="Terminating PCF..." category=Init component=PCF
+time="2023-07-26T07:53:07Z" level=info msg="Send Deregister NFInstance" category=Consumer component=PCF
+time="2023-07-26T07:53:08Z" level=warning msg="[PCF] Handle Amf Status Change Notify is not implemented." category=Callback component=PCF
+time="2023-07-26T07:53:08Z" level=info msg="| 204 |       127.0.0.1 | POST    | /npcf-callback/v1/amfstatus | " category=GIN component=PCF
+time="2023-07-26T07:53:08Z" level=info msg="Deregister from NRF successfully" category=Init component=PCF
+time="2023-07-26T07:53:08Z" level=info msg="PCF terminated" category=Init component=PCF

@@ -1,0 +1,34 @@
+time="2023-07-24T17:43:07Z" level=info msg=n3iwf category=App component=N3IWF
+time="2023-07-24T17:43:07Z" level=info msg="N3IWF version:  \n\tNot specify ldflags (which link version) during go build\n\tgo version: go1.15.7 linux/amd64" category=App component=N3IWF
+time="2023-07-24T17:43:07Z" level=info msg="N3IWF Log level is set to [info] level" category=Init component=N3IWF
+time="2023-07-24T17:43:07Z" level=info msg="config version [1.0.0]" category=CFG component=N3IWF
+time="2023-07-24T17:43:07Z" level=info msg="Server started" category=Init component=N3IWF
+time="2023-07-24T17:43:07Z" level=warning msg="No private key file path specified, load default key file..." category=Context component=N3IWF
+time="2023-07-24T17:43:07Z" level=warning msg="Parse PKCS8 private key failed: x509: failed to parse private key (use ParsePKCS1PrivateKey instead for this key format)" category=Context component=N3IWF
+time="2023-07-24T17:43:07Z" level=info msg="Parse using PKCS1..." category=Context component=N3IWF
+time="2023-07-24T17:43:07Z" level=warning msg="No certificate authority file path specified, load default CA certificate..." category=Context component=N3IWF
+time="2023-07-24T17:43:07Z" level=warning msg="No certificate file path specified, load default certificate..." category=Context component=N3IWF
+time="2023-07-24T17:48:49Z" level=error msg="[SCTP] DialSCTP(): connection timed out" category=NGAP component=N3IWF
+time="2023-07-24T17:48:49Z" level=info msg="Retry to connect AMF after 1 second..." category=NGAP component=N3IWF
+time="2023-07-25T07:45:28Z" level=info msg=n3iwf category=App component=N3IWF
+time="2023-07-25T07:45:28Z" level=info msg="N3IWF version:  \n\tNot specify ldflags (which link version) during go build\n\tgo version: go1.15.7 linux/amd64" category=App component=N3IWF
+time="2023-07-25T07:45:28Z" level=info msg="N3IWF Log level is set to [info] level" category=Init component=N3IWF
+time="2023-07-25T07:45:28Z" level=info msg="config version [1.0.0]" category=CFG component=N3IWF
+time="2023-07-25T07:45:28Z" level=info msg="Server started" category=Init component=N3IWF
+time="2023-07-25T07:45:28Z" level=warning msg="No private key file path specified, load default key file..." category=Context component=N3IWF
+time="2023-07-25T07:45:28Z" level=warning msg="Parse PKCS8 private key failed: x509: failed to parse private key (use ParsePKCS1PrivateKey instead for this key format)" category=Context component=N3IWF
+time="2023-07-25T07:45:28Z" level=info msg="Parse using PKCS1..." category=Context component=N3IWF
+time="2023-07-25T07:45:28Z" level=warning msg="No certificate authority file path specified, load default CA certificate..." category=Context component=N3IWF
+time="2023-07-25T07:45:28Z" level=warning msg="No certificate file path specified, load default certificate..." category=Context component=N3IWF
+time="2023-07-25T07:51:09Z" level=error msg="[SCTP] DialSCTP(): connection timed out" category=NGAP component=N3IWF
+time="2023-07-25T07:51:09Z" level=info msg="Retry to connect AMF after 1 second..." category=NGAP component=N3IWF
+time="2023-07-26T07:48:49Z" level=info msg=n3iwf category=App component=N3IWF
+time="2023-07-26T07:48:49Z" level=info msg="N3IWF version:  \n\tNot specify ldflags (which link version) during go build\n\tgo version: go1.15.7 linux/amd64" category=App component=N3IWF
+time="2023-07-26T07:48:49Z" level=info msg="N3IWF Log level is set to [info] level" category=Init component=N3IWF
+time="2023-07-26T07:48:49Z" level=info msg="config version [1.0.0]" category=CFG component=N3IWF
+time="2023-07-26T07:48:49Z" level=info msg="Server started" category=Init component=N3IWF
+time="2023-07-26T07:48:49Z" level=warning msg="No private key file path specified, load default key file..." category=Context component=N3IWF
+time="2023-07-26T07:48:49Z" level=warning msg="Parse PKCS8 private key failed: x509: failed to parse private key (use ParsePKCS1PrivateKey instead for this key format)" category=Context component=N3IWF
+time="2023-07-26T07:48:49Z" level=info msg="Parse using PKCS1..." category=Context component=N3IWF
+time="2023-07-26T07:48:49Z" level=warning msg="No certificate authority file path specified, load default CA certificate..." category=Context component=N3IWF
+time="2023-07-26T07:48:49Z" level=warning msg="No certificate file path specified, load default certificate..." category=Context component=N3IWF

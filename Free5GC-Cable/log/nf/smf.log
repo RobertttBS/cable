@@ -1,0 +1,157 @@
+time="2023-07-24T17:43:06Z" level=info msg="SMF version:  \n\tNot specify ldflags (which link version) during go build\n\tgo version: go1.15.7 linux/amd64" category=App component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="SMF Log level is set to [info] level" category=Init component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="SMF config version [1.0.0]" category=CFG component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="UE-Routing config version [1.0.0]" category=CFG component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="smfconfig Info: Version[1.0.0] Description[SMF initial local configuration]" category=CTX component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="Endpoints: [192.168.56.101]" category=CTX component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="Server started" category=Init component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="SMF Registration to NRF {f059e213-a8d3-4be1-8aa6-c4df7ec23475 SMF REGISTERED 0 0xc0002599c0 0xc000259a00 [] []   [127.0.0.2] [] <nil> [] [] <nil> 0 0 0  <nil> <nil> <nil> <nil> 0xc00038fb80 <nil> <nil> <nil> <nil> <nil> map[] <nil> false 0xc000259840 false false []}" category=Init component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="Listen on 127.0.0.1:8805" category=PFCP component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="Send PFCP Association Request to UPF[127.0.0.8]\n" category=App component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="In HandlePfcpAssociationSetupResponse" category=PFCP component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="Handle PFCP Association Setup Response with NodeID[127.0.0.8]" category=PFCP component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="UPF(127.0.0.8)[internet] setup association" category=PFCP component=SMF
+time="2023-07-24T17:43:06Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="Recieve Create SM Context Request" category=PduSess component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="In HandlePDUSessionSMContextCreate" category=PduSess component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="Send NF Discovery Serving UDM Successfully" category=PduSess component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="In HandlePDUSessionEstablishmentRequest" category=GSM component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="Protocol Configuration Options" category=GSM component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="&{[0xc00062e980 0xc00062e9c0]}" category=GSM component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="Didn't Implement container type IPAddressAllocationViaNASSignallingUL" category=GSM component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="PCF Selection for SMContext SUPI[imsi-208930000000003] PDUSessionID[1]\n" category=PduSess component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="SUPI[imsi-208930000000003] has no pre-config route" category=PduSess component=SMF
+time="2023-07-24T17:43:33Z" level=info msg="SendNFDiscoveryServingAMF ok" category=Consumer component=SMF
+time="2023-07-24T17:43:36Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-24T17:44:06Z" level=warning msg="Post a New UPF Report Data to MongoDB succeed!" category=PFCP component=SMF
+time="2023-07-24T17:44:06Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-24T17:44:33Z" level=warning msg="Post a New PDU Session Info to MongoDB succeed!" category=PFCP component=SMF
+time="2023-07-24T17:44:33Z" level=info msg="| 201 |       127.0.0.1 | POST    | /nsmf-pdusession/v1/sm-contexts | " category=GIN component=SMF
+time="2023-07-24T17:44:33Z" level=info msg="Recieve Update SM Context Request" category=PduSess component=SMF
+time="2023-07-24T17:44:33Z" level=info msg="In HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-24T17:44:33Z" level=warning msg="SMContext[imsi-208930000000003-01] should be Active, but actual ModificationPending" category=PduSess component=SMF
+time="2023-07-24T17:44:33Z" level=info msg="[SMF] Cause_REL_DUE_TO_DUPLICATE_SESSION_ID" category=CTX component=SMF
+time="2023-07-24T17:44:33Z" level=info msg="Send PFCP Deletion from HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-24T17:44:33Z" level=info msg="In HandlePfcpSessionEstablishmentResponse" category=PFCP component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="SMF version:  \n\tNot specify ldflags (which link version) during go build\n\tgo version: go1.15.7 linux/amd64" category=App component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="SMF Log level is set to [info] level" category=Init component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="SMF config version [1.0.0]" category=CFG component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="UE-Routing config version [1.0.0]" category=CFG component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="smfconfig Info: Version[1.0.0] Description[SMF initial local configuration]" category=CTX component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="Endpoints: [192.168.56.101]" category=CTX component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="Server started" category=Init component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="SMF Registration to NRF {5b0d8762-2813-47d1-8c59-506a5792a5b0 SMF REGISTERED 0 0xc00000c1e0 0xc00000c220 [] []   [127.0.0.2] [] <nil> [] [] <nil> 0 0 0  <nil> <nil> <nil> <nil> 0xc0002c4080 <nil> <nil> <nil> <nil> <nil> map[] <nil> false 0xc00000c060 false false []}" category=Init component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="Listen on 127.0.0.1:8805" category=PFCP component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="Send PFCP Association Request to UPF[127.0.0.8]\n" category=App component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="In HandlePfcpAssociationSetupResponse" category=PFCP component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="Handle PFCP Association Setup Response with NodeID[127.0.0.8]" category=PFCP component=SMF
+time="2023-07-25T07:45:27Z" level=info msg="UPF(127.0.0.8)[internet] setup association" category=PFCP component=SMF
+time="2023-07-25T07:45:57Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="Recieve Create SM Context Request" category=PduSess component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="In HandlePDUSessionSMContextCreate" category=PduSess component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="Send NF Discovery Serving UDM Successfully" category=PduSess component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="In HandlePDUSessionEstablishmentRequest" category=GSM component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="Protocol Configuration Options" category=GSM component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="&{[0xc0003da980 0xc0003da9c0]}" category=GSM component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="Didn't Implement container type IPAddressAllocationViaNASSignallingUL" category=GSM component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="PCF Selection for SMContext SUPI[imsi-208930000000003] PDUSessionID[1]\n" category=PduSess component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="SUPI[imsi-208930000000003] has no pre-config route" category=PduSess component=SMF
+time="2023-07-25T07:46:00Z" level=info msg="SendNFDiscoveryServingAMF ok" category=Consumer component=SMF
+time="2023-07-25T07:46:27Z" level=warning msg="Post a New UPF Report Data to MongoDB succeed!" category=PFCP component=SMF
+time="2023-07-25T07:46:27Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-25T07:46:57Z" level=warning msg="Post a New UPF Report Data to MongoDB succeed!" category=PFCP component=SMF
+time="2023-07-25T07:46:57Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-25T07:47:00Z" level=warning msg="Post a New PDU Session Info to MongoDB succeed!" category=PFCP component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="| 201 |       127.0.0.1 | POST    | /nsmf-pdusession/v1/sm-contexts | " category=GIN component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="Recieve Update SM Context Request" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="In HandlePfcpSessionEstablishmentResponse" category=PFCP component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="In HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=warning msg="SMContext[imsi-208930000000003-01] should be Active, but actual ModificationPending" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="[SMF] Cause_REL_DUE_TO_DUPLICATE_SESSION_ID" category=CTX component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="Send PFCP Deletion from HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="Handle PFCP Session Deletion Response" category=PFCP component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="PFCP Session Deletion Success[1]\n" category=PFCP component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="| 200 |       127.0.0.1 | POST    | /nsmf-pdusession/v1/sm-contexts/urn:uuid:c16aa335-7f36-4709-a6e3-6dc41cbe76c1/modify | " category=GIN component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="Recieve Update SM Context Request" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="In HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="[SMF] N2 PDUSession Release Complete " category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="[SMF] Send Update SmContext Response" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="[SMF] Send SMContext Status Notification" category=CTX component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="| 200 |       127.0.0.1 | POST    | /nsmf-pdusession/v1/sm-contexts/urn:uuid:c16aa335-7f36-4709-a6e3-6dc41cbe76c1/modify | " category=GIN component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="Recieve Create SM Context Request" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="In HandlePDUSessionSMContextCreate" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="Send NF Discovery Serving UDM Successfully" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="In HandlePDUSessionEstablishmentRequest" category=GSM component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="Protocol Configuration Options" category=GSM component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="&{[0xc00038cb20 0xc00038cb60]}" category=GSM component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="Didn't Implement container type IPAddressAllocationViaNASSignallingUL" category=GSM component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="PCF Selection for SMContext SUPI[imsi-208930000000003] PDUSessionID[1]\n" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="SUPI[imsi-208930000000003] has no pre-config route" category=PduSess component=SMF
+time="2023-07-25T07:47:00Z" level=info msg="SendNFDiscoveryServingAMF ok" category=Consumer component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="SMF version:  \n\tNot specify ldflags (which link version) during go build\n\tgo version: go1.15.7 linux/amd64" category=App component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="SMF Log level is set to [info] level" category=Init component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="SMF config version [1.0.0]" category=CFG component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="UE-Routing config version [1.0.0]" category=CFG component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="smfconfig Info: Version[1.0.0] Description[SMF initial local configuration]" category=CTX component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="Endpoints: [192.168.56.101]" category=CTX component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="Server started" category=Init component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="SMF Registration to NRF {c029656a-de88-4418-95d8-960671013de0 SMF REGISTERED 0 0xc0000a6240 0xc0000a6280 [] []   [127.0.0.2] [] <nil> [] [] <nil> 0 0 0  <nil> <nil> <nil> <nil> 0xc000410500 <nil> <nil> <nil> <nil> <nil> map[] <nil> false 0xc0000a60a0 false false []}" category=Init component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="Listen on 127.0.0.1:8805" category=PFCP component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="Send PFCP Association Request to UPF[127.0.0.8]\n" category=App component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="In HandlePfcpAssociationSetupResponse" category=PFCP component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="Handle PFCP Association Setup Response with NodeID[127.0.0.8]" category=PFCP component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="UPF(127.0.0.8)[internet] setup association" category=PFCP component=SMF
+time="2023-07-26T07:48:48Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-26T07:49:18Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-26T07:49:48Z" level=warning msg="Post a New UPF Report Data to MongoDB succeed!" category=PFCP component=SMF
+time="2023-07-26T07:49:48Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="Recieve Create SM Context Request" category=PduSess component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="In HandlePDUSessionSMContextCreate" category=PduSess component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="Send NF Discovery Serving UDM Successfully" category=PduSess component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="In HandlePDUSessionEstablishmentRequest" category=GSM component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="Protocol Configuration Options" category=GSM component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="&{[0xc00000cf80 0xc00000d060]}" category=GSM component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="Didn't Implement container type IPAddressAllocationViaNASSignallingUL" category=GSM component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="PCF Selection for SMContext SUPI[imsi-208930000000003] PDUSessionID[1]\n" category=PduSess component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="SUPI[imsi-208930000000003] has no pre-config route" category=PduSess component=SMF
+time="2023-07-26T07:50:00Z" level=info msg="SendNFDiscoveryServingAMF ok" category=Consumer component=SMF
+time="2023-07-26T07:50:18Z" level=warning msg="Post a New UPF Report Data to MongoDB succeed!" category=PFCP component=SMF
+time="2023-07-26T07:50:18Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-26T07:50:48Z" level=warning msg="Post a New UPF Report Data to MongoDB succeed!" category=PFCP component=SMF
+time="2023-07-26T07:50:48Z" level=info msg="Handling PFCP UPF Report Response" category=PFCP component=SMF
+time="2023-07-26T07:51:00Z" level=warning msg="Post a New PDU Session Info to MongoDB succeed!" category=PFCP component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="| 201 |       127.0.0.1 | POST    | /nsmf-pdusession/v1/sm-contexts | " category=GIN component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Recieve Update SM Context Request" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="In HandlePfcpSessionEstablishmentResponse" category=PFCP component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="In HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=warning msg="SMContext[imsi-208930000000003-01] should be Active, but actual ModificationPending" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="[SMF] Cause_REL_DUE_TO_DUPLICATE_SESSION_ID" category=CTX component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Send PFCP Deletion from HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Handle PFCP Session Deletion Response" category=PFCP component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="PFCP Session Deletion Success[1]\n" category=PFCP component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="| 200 |       127.0.0.1 | POST    | /nsmf-pdusession/v1/sm-contexts/urn:uuid:c1a1445c-edc5-4456-9309-f831b283b066/modify | " category=GIN component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Recieve Update SM Context Request" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="In HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=warning msg="SMContext[imsi-208930000000003-01] should be Active, but actual InActivePending" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="| 500 |       127.0.0.1 | POST    | /nsmf-pdusession/v1/sm-contexts/urn:uuid:c1a1445c-edc5-4456-9309-f831b283b066/modify | " category=GIN component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Recieve Update SM Context Request" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="In HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=warning msg="SMContext[imsi-208930000000003-01] should be Active, but actual InActivePending" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="| 500 |       127.0.0.1 | POST    | /nsmf-pdusession/v1/sm-contexts/urn:uuid:c1a1445c-edc5-4456-9309-f831b283b066/modify | " category=GIN component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Recieve Update SM Context Request" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="In HandlePDUSessionSMContextUpdate" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="[SMF] N2 PDUSession Release Complete " category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="[SMF] Send Update SmContext Response" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="[SMF] Send SMContext Status Notification" category=CTX component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="| 200 |       127.0.0.1 | POST    | /nsmf-pdusession/v1/sm-contexts/urn:uuid:c1a1445c-edc5-4456-9309-f831b283b066/modify | " category=GIN component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Recieve Create SM Context Request" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="In HandlePDUSessionSMContextCreate" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Send NF Discovery Serving UDM Successfully" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="In HandlePDUSessionEstablishmentRequest" category=GSM component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Protocol Configuration Options" category=GSM component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="&{[0xc000106460 0xc0001064c0]}" category=GSM component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="Didn't Implement container type IPAddressAllocationViaNASSignallingUL" category=GSM component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="PCF Selection for SMContext SUPI[imsi-208930000000003] PDUSessionID[1]\n" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="SUPI[imsi-208930000000003] has no pre-config route" category=PduSess component=SMF
+time="2023-07-26T07:51:00Z" level=info msg="SendNFDiscoveryServingAMF ok" category=Consumer component=SMF

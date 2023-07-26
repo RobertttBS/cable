@@ -1,0 +1,12 @@
+time="2023-07-24T17:43:32Z" level=info msg="suciPart [suci 0 208 93 0000 0 0 0000000003]\n" category=3GPP component=LIB
+time="2023-07-24T17:43:32Z" level=info msg="scheme 0\n" category=3GPP component=LIB
+time="2023-07-24T17:43:32Z" level=info msg="SUPI type is IMSI\n" category=3GPP component=LIB
+time="2023-07-25T07:46:00Z" level=info msg="suciPart [suci 0 208 93 0000 0 0 0000000003]\n" category=3GPP component=LIB
+time="2023-07-25T07:46:00Z" level=info msg="scheme 0\n" category=3GPP component=LIB
+time="2023-07-25T07:46:00Z" level=info msg="SUPI type is IMSI\n" category=3GPP component=LIB
+time="2023-07-25T07:48:57Z" level=info msg="suciPart [suci 0 208 93 0000 0 0 0000000003]\n" category=3GPP component=LIB
+time="2023-07-25T07:48:57Z" level=info msg="scheme 0\n" category=3GPP component=LIB
+time="2023-07-25T07:48:57Z" level=info msg="SUPI type is IMSI\n" category=3GPP component=LIB
+time="2023-07-26T07:49:59Z" level=info msg="suciPart [suci 0 208 93 0000 0 0 0000000003]\n" category=3GPP component=LIB
+time="2023-07-26T07:49:59Z" level=info msg="scheme 0\n" category=3GPP component=LIB
+time="2023-07-26T07:49:59Z" level=info msg="SUPI type is IMSI\n" category=3GPP component=LIB
